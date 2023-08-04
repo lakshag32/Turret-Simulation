@@ -9,13 +9,6 @@
       "/SmartDashboard/PIDController[1]": "PIDController",
       "/SmartDashboard/Rotator": "Mechanism2d",
       "/SmartDashboard/Wrist": "Mechanism2d"
-    },
-    "windows": {
-      "/SmartDashboard/Rotator": {
-        "window": {
-          "visible": true
-        }
-      }
     }
   }
 }

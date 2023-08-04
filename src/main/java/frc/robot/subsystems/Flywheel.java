@@ -39,18 +39,14 @@ public class Flywheel extends SubsystemBase {
   private double m_ffValue = 0; 
 
 
-  public Flywheel() {
-    setFlywheelSetpoint(5000);
+  public Flywheel(){
+    //setFlywheelSetpoint(5000);
 
     m_motor = new WPI_TalonFX(RotatorConstants.kRotatorMotorID);
-    m_motorSim = m_motor.getSimCollection(); 
     m_feedForwardController = new SimpleMotorFeedforward(FlywheelConstants.kFlywheelKs, FlywheelConstants.kFlywheelKv, FlywheelConstants.kFlywheelKa);
 
     m_controller = new PIDController(RotatorConstants.kP, RotatorConstants.kI, RotatorConstants.kD); 
     m_bangBangController = new BangBangController(); 
-
-    
-    SmartDashboard.putData("PID Controller", m_controller); 
 
     if(RobotBase.isSimulation()){
       m_motorSim = m_motor.getSimCollection(); 
@@ -65,31 +61,31 @@ public class Flywheel extends SubsystemBase {
 
   @Override
   public void periodic() {
-    moveFlywheelMotor();
+    //moveFlywheelMotor();
   }
 
   @Override
   public void simulationPeriodic() {
-    m_flywheelSim.setInputVoltage(m_motor.get() * RobotController.getInputVoltage());
-    m_flywheelSim.update(0.02);
-    m_motorSim.setIntegratedSensorVelocity((int)m_flywheelSim.getAngularVelocityRadPerSec()); 
-    //moveFlywheelMotor();
-    System.out.println("hello");
+    // m_flywheelSim.setInputVoltage(m_motor.get() * RobotController.getInputVoltage());
+    // m_flywheelSim.update(0.02);
+    // m_motorSim.setIntegratedSensorVelocity((int)m_flywheelSim.getAngularVelocityRadPerSec()); 
+    // //moveFlywheelMotor();
+    //System.out.println("hello");
     // System.out.println(m_flywheelSim.getAngularVelocityRPM()); 
   }
 
-  public void setFlywheelSetpoint(double setpointVelocityRPM){
+  // public void setFlywheelSetpoint(double setpointVelocityRPM){
 
-    setpointVelocityRPM = MathUtil.clamp(setpointVelocityRPM, 0, FlywheelConstants.kMaxSetpointValue);
-    m_ffValue = m_feedForwardController.calculate(setpointVelocityRPM);
-    m_bangBangController.setSetpoint(setpointVelocityRPM);
+  //   setpointVelocityRPM = MathUtil.clamp(setpointVelocityRPM, 0, FlywheelConstants.kMaxSetpointValue);
+  //   m_ffValue = m_feedForwardController.calculate(setpointVelocityRPM);
+  //   m_bangBangController.setSetpoint(setpointVelocityRPM);
 
-    System.out.println(m_bangBangController.getSetpoint());
-  } 
+  //   System.out.println(m_bangBangController.getSetpoint());
+  // } 
 
-  public void moveFlywheelMotor(){
-    double bangOutput = m_bangBangController.calculate(m_motor.getSelectedSensorVelocity()) * 12.0;
-    m_motor.setVoltage(bangOutput + 0.9 * m_ffValue);
-  }
+  // public void moveFlywheelMotor(){
+  //   double bangOutput = m_bangBangController.calculate(m_motor.getSelectedSensorVelocity()) * 12.0;
+  //   m_motor.setVoltage(bangOutput + 0.9 * m_ffValue);
+  // }
 
 }
