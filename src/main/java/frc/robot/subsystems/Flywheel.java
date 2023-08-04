@@ -66,13 +66,15 @@ public class Flywheel extends SubsystemBase {
 
   @Override
   public void simulationPeriodic() {
+    System.out.println("hello");
+  }
     // m_flywheelSim.setInputVoltage(m_motor.get() * RobotController.getInputVoltage());
     // m_flywheelSim.update(0.02);
     // m_motorSim.setIntegratedSensorVelocity((int)m_flywheelSim.getAngularVelocityRadPerSec()); 
     // //moveFlywheelMotor();
     //System.out.println("hello");
     // System.out.println(m_flywheelSim.getAngularVelocityRPM()); 
-  }
+
 
   // public void setFlywheelSetpoint(double setpointVelocityRPM){
 
