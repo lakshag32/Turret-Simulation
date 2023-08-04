@@ -1,0 +1,21 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/TurretRotator": "Subsystem",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/LiveWindow/Ungrouped/Talon FX [0]": "Motor Controller",
+      "/SmartDashboard/PID Controller": "PIDController",
+      "/SmartDashboard/PIDController[1]": "PIDController",
+      "/SmartDashboard/Rotator": "Mechanism2d",
+      "/SmartDashboard/Wrist": "Mechanism2d"
+    },
+    "windows": {
+      "/SmartDashboard/Rotator": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  }
+}
