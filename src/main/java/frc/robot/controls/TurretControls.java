@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.TurretRotator;
 
 public class TurretControls {
@@ -18,6 +19,8 @@ public class TurretControls {
   */
 
   TurretRotator m_rotator; 
+  Flywheel m_flywheel; 
+
   Trigger m_button1;
   Trigger m_button2;
   Trigger m_button3;
@@ -45,9 +48,10 @@ public class TurretControls {
    * 
    * @param wristSubsystem
    */
-  public TurretControls(TurretRotator rotator){
+  public TurretControls(TurretRotator rotator, Flywheel flywheel){
     
     m_rotator = rotator; 
+    m_flywheel = flywheel; 
     m_joy = new Joystick(0); 
     m_button1 = new JoystickButton(m_joy, 1);
     m_button2 = new JoystickButton(m_joy, 2);
@@ -67,10 +71,15 @@ public class TurretControls {
      * When a button is pressed run the MoveWrist command. 
      * Give the command the WristSubsystem(stored in m_wrist instance variable) and a desired setpoint to move the wrist too
      */
-    m_button1.onTrue(new InstantCommand(()->m_rotator.setSetpoint(0))); 
-    m_button2.onTrue(new InstantCommand(()->m_rotator.setSetpoint(Math.PI/2))); 
-    m_button3.onTrue(new InstantCommand(()->m_rotator.setSetpoint(Math.PI))); 
-    m_button4.onTrue(new InstantCommand(()->m_rotator.setSetpoint(-Math.PI/2))); 
+    // m_button1.onTrue(new InstantCommand(()->m_rotator.setSetpoint(0))); 
+    // m_button2.onTrue(new InstantCommand(()->m_rotator.setSetpoint(Math.PI/2))); 
+    // m_button3.onTrue(new InstantCommand(()->m_rotator.setSetpoint(Math.PI))); 
+    // m_button4.onTrue(new InstantCommand(()->m_rotator.setSetpoint(-Math.PI/2))); 
+
+    m_button1.onTrue(new InstantCommand(()->m_flywheel.setFlywheelSetpoint(0))); 
+    m_button2.onTrue(new InstantCommand(()->m_flywheel.setFlywheelSetpoint(100))); 
+    m_button3.onTrue(new InstantCommand(()->m_flywheel.setFlywheelSetpoint(200))); 
+    m_button4.onTrue(new InstantCommand(()->m_flywheel.setFlywheelSetpoint(300))); 
 
 
     /**
